@@ -18,9 +18,19 @@ public class ImageURLGenerator {
 
             for(int i = 0; i<numberOfImages + 1; i++) {
                 int id = i;
-                String string = url + i + ".png";
-                Image image = new Image(id, string);
-                imageURLs.add(image);
+                if(id < 10) {
+                    String string = url + "00" + i + ".png";
+                    Image image = new Image(id, string);
+                    imageURLs.add(image);
+                } else if(id >= 10 && id < 100) {
+                    String string = url + "0" + i + ".png";
+                    Image image = new Image(id, string);
+                    imageURLs.add(image);
+                } else {
+                    String string = url + i + ".png";
+                    Image image = new Image(id, string);
+                    imageURLs.add(image);
+                }
             }
             //Creates new CSV file and writes Pokemon Objects to rows.
             Writer writer = new FileWriter("pokemonImages.csv");
